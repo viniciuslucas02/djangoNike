@@ -19,7 +19,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ALLOWED_HOSTS = [
-    "djangonike.onrender.com",
+    "djangonike.onrender.com"
     "localhost",
     "127.0.0.1"
 ]
@@ -35,9 +35,11 @@ CSRF_TRUSTED_ORIGINS = [
 SECRET_KEY = 'django-insecure-sue#4ku4n=(7%n)+o-at*0s%qt2y$mz$xkh&nh2$(!$jv7jbpv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [    
+  "djangonike.onrender.com"
+]
 
 
 # Application definition

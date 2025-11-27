@@ -10,22 +10,23 @@ class FormUsuario(UserCreationForm):
          
          
         widgets = {
-            'username': forms.TextInput(attrs={
-                'class': 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#1e1801] focus:outline-none',
-                'placeholder': 'Seu nome de usuário'
-            }),
+            
             'email': forms.EmailInput(attrs={
                 'class': 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#1e1801] focus:outline-none',
                 'placeholder': 'Seu email'
             }),
             'password1': forms.PasswordInput(attrs={
                 'class': 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#1e1801] focus:outline-none',
-                'placeholder': 'Senha'
+                
             }),
-            'password2': forms.PasswordInput(attrs={
+            'username': forms.TextInput(attrs={
                 'class': 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#1e1801] focus:outline-none',
-                'placeholder': 'Confirme a senha'
+                'placeholder': 'Seu nome de usuário'
             }),
+            # 'password2': forms.PasswordInput(attrs={
+            #     'class': 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#1e1801] focus:outline-none',
+            #     'placeholder': 'Confirme a senha'
+            # }),
         }
 
 
