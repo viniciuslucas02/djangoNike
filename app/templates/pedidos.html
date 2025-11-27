@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+{% include 'fragments/navbar.html'%}
+<div class="max-w-3xl mx-auto mt-10">
+    <h1 class="text-3xl font-bold mb-6">Meus Pedidos</h1>
+
+    {% if pedidos %}
+    <div class="bg-white shadow rounded-lg p-5 overflow-x-auto">
+        <table class="w-full">
+            <thead>
+                <tr class="border-b text-left">
+                    <th class="py-2">Imagem</th>
+                    <th class="py-2">Produto</th>
+                    
+                    <th class="py-2">Quantidade</th>
+                    <th class="py-2">Data</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for p in pedidos %}
+                <tr class="border-b">
+                    <td class="py-2">
+                        <img src="/media/{{ p.produto.imagem }}" 
+                             alt="{{ p.produto.nome }}" 
+                             class="w-16 h-16 ">
+                    </td>
+
+                    <td class="py-2 font-medium">{{ p.produto.nome }}</td>
+
+                    <td class="py-2">{{ p.quantidade }}</td>
+
+                    <td class="py-2">{{ p.data|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% else %}
+    <p class="text-gray-700">Você ainda não comprou nada.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

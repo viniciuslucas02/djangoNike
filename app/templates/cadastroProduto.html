@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Cadastrar Produto {% endblock %}
+
+{% block conteudo %}
+{% include 'fragments/navbar.html'%}
+
+<h1>pagina inicial</h1>
+
+<div class="flex justify-center items-center flex-grow">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Cadastrar produto</h2>
+        <form method="post" class="space-y-4" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <div class="flex justify-center">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Cadastrar Produto {% endblock %}
+
+{% block conteudo %}
+{% include 'fragments/navbar.html'%}
+
+
+ {% if messages %}
+    <ul class="mb-4">
+        {% for message in messages %}
+            <li class="text-red-600 font-semibold">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<section>
+    <div><img src="https://sacodigital.com/wp-content/uploads/2025/06/NIKE-Inc_banner.webp"></div>
+</section>
+
+<div><h1 class="pl-20 mt-16 mb-6 text-3xl">Todos os produtos:</h1></div>
+
+<div class="mt-4 ml-16 mr-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-2">
+    {% for prod in produtos %}
+        <div class="bg-white p-4 rounded-xl shadow-lg border border-gray-200 m-4">
+            <h6 class="text-xl mt-3">{{ prod.nome }}</h6>
+            <center>
+            <img src="media/{{ prod.imagem }}" alt="{{ prod.nome }}" 
+                 class="w-58 h-58">
+        </center>
+            
+
+            <p class="text-gray-600 mt-1">
+                <span class="font-semibold">Estoque:</span> {{ prod.estoque }}
+            </p>
+
+            <a href="{% url 'comprar' prod.id %}"
+               class="mt-4 block w-full bg-black text-center text-white py-2 rounded-lg hover:bg-black transition">
+                Comprar
+            </a>
+
+        </div>
+    {% endfor %}
+</div>
+
+<section class="mt-16">
+    <footer class="bg-black text-white">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
+
+    <div>
+      <h3 class="uppercase font-semibold tracking-widest mb-4">Ajuda</h3>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-white transition">Status do pedido</a></li>
+        <li><a href="#" class="hover:text-white transition">Frete e entrega</a></li>
+        <li><a href="#" class="hover:text-white transition">Devoluções</a></li>
+        <li><a href="#" class="hover:text-white transition">Opções de pagamento</a></li>
+        <li><a href="#" class="hover:text-white transition">Fale conosco</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="uppercase font-semibold tracking-widest mb-4">Sobre</h3>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-white transition">Notícias</a></li>
+        <li><a href="#" class="hover:text-white transition">Carreiras</a></li>
+        <li><a href="#" class="hover:text-white transition">Investidores</a></li>
+        <li><a href="#" class="hover:text-white transition">Sustentabilidade</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="uppercase font-semibold tracking-widest mb-4">Entrega</h3>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-white transition">Transportadoras</a></li>
+        <li><a href="#" class="hover:text-white transition">Rastreamento</a></li>
+        <li><a href="#" class="hover:text-white transition">Regiões atendidas</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="uppercase font-semibold tracking-widest mb-4">Redes sociais</h3>
+      <div class="flex space-x-4 text-gray-400">
+        <a href="#" class="hover:text-white transition">Instagram</a>
+        <a href="#" class="hover:text-white transition">Twitter</a>
+        <a href="#" class="hover:text-white transition">YouTube</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
+      <p>Brasil - Praia Grande</p>
+      <p>© 2025 Djangoboys. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+</section>
+
+{% endblock %}

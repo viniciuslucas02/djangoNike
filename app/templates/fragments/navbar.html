@@ -1,0 +1,94 @@
+<nav class="bg-white shadow-md text-white px-6 py-6 pr-20 pl-20 flex items-center justify-between">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        
+        *{
+            font-family: Poppins;
+        }
+    </style>
+
+    <div class="flex items-center">
+        <ul class="hidden md:flex space-x-8">
+            <li><a href="{%url 'index' %}" class="text-gray-800 hover:text-gray-900">Início</a></li>
+            <li><a href="{%url 'produtos' %}" class="text-gray-800 hover:text-gray-900">Produtos</a></li>
+            <li><a href="#secao-sobre" class="text-gray-800 hover:text-gray-900">Sobre</a></li>
+            <li><a href="{%url 'contato' %}" class="text-gray-800 hover:text-gray-900">Contato</a></li>
+        </ul>
+    </div>
+
+    <div class="absolute left-1/2 transform -translate-x-1/2">
+        <div><img src="/media/{{ pagina.logo }}"></div>
+    </div>
+
+    <div class="flex items-center">
+        <ul class="hidden md:flex space-x-8">
+            {% if user.is_authenticated %}
+
+            <div class="relative inline-block text-left">
+                <button id="dropdownButton"
+                    class="bg-black text-white px-4 py-2 rounded-md hover:bg-black transition cursor-pointer">
+                    Menu ▼
+                </button>
+
+                <div id="dropdownMenu"
+                    class="hidden absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg border border-gray-100 z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Ola, {{request.user.username}}</a>
+                    <a href="{%url 'dashboard' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Dashboard</a>
+                    <a href="{%url 'logout' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Sair</a>
+                </div>
+            </div>
+
+            {% else %}
+            <li><a href="{%url 'cadastro' %}" class="text-gray-800 hover:text-gray-900">Cadastrar</a></li>
+            <li><a href="{%url 'login' %}" class="p-2 pl-6 pr-6 rounded-md bg-gray-900 text-white hover:text-gray-200">Logar</a></li>
+
+            {% endif %}
+        </ul>
+    </div>
+    <button id="menu-btn" class="md:hidden flex flex-col space-y-1">
+        <span class="w-6 h-0.5 bg-white"></span>
+        <span class="w-6 h-0.5 bg-white"></span>
+        <span class="w-6 h-0.5 bg-white"></span>
+    </button>
+</nav>
+
+<div id="mobile-menu" class="hidden bg-gray-800 md:hidden text-white">
+    <ul class="flex flex-col space-y-2 px-6 py-4">
+        <li><a href="{%url 'index' %}" class="block hover:text-blue-400 transition">Início</a></li>
+        <li><a href="{%url 'cadastro' %}" class="block hover:text-blue-400 transition">Cadastrar</a></li>
+        <li><a href="{%url 'login' %}" class="hover:text-blue-400 transition">Logar</a></li>
+        <li><a href="" class="block hover:text-blue-400 transition">Sobre</a></li>
+        <li><a href="{%url 'contato' %}" class="block hover:text-blue-400 transition">Contato</a></li>
+    </ul>
+</div>
+
+
+<script defer>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+
+    dropdownButton.addEventListener('mouseenter', () => {
+        dropdownMenu.classList.toggle('hidden');
+    });
+
+    // Fecha quando o mouse sai do botão ou do menu
+    dropdownButton.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+            if (!dropdownMenu.matches(':hover')) {
+                dropdownMenu.classList.add('hidden');
+            }
+        }, 100);
+    });
+
+    dropdownMenu.addEventListener('mouseleave', () => {
+        dropdownMenu.classList.add('hidden');
+    });
+
+</script>

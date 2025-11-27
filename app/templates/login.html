@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block titulo %} Logar {% endblock %}
+
+{% block conteudo %}
+{% include 'fragments/navbar.html'%}
+<div class="mt-32 flex items-center justify-center">
+    <form action="{% url 'logar' %}" method="POST"
+        class="bg-white shadow-lg rounded-xl p-8 w-full max-w-sm border border-gray-200">
+        {% csrf_token %}
+
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Entrar</h2>
+
+        <div class="mb-4">
+            <input type="text" name="nome" placeholder="Nome"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+
+        <div class="mb-4">
+            <input type="password" name="senha" placeholder="Senha"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+
+
+        <div class="mt-6">
+            <button class="w-full bg-black text-white py-2 rounded-lg hover:bg-black transition cursor-pointer">
+                Logar
+            </button>
+        </div>
+
+        {% if messages %}
+        <ul class="mt-4">
+            {% for message in messages %}
+
+            <div role="alert"
+                class="bg-red-100 dark:bg-red-900 border-l-4 border-red-500 dark:border-red-700 text-red-900 dark:text-red-100 p-2 rounded-lg flex items-center transition duration-300 ease-in-out hover:bg-red-200 dark:hover:bg-red-800 transform hover:scale-105">
+                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                    class="h-5 w-5 flex-shrink-0 mr-2 text-red-600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"
+                        stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+                <p class="text-xs font-semibold">{{ message }}</p>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+</div>
+
+{% endblock %}
